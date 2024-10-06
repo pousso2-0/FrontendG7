@@ -1,20 +1,15 @@
 // src/pages/HomePage.jsx
 import React from 'react';
+import Layout from '../components/squelette/Layout'; // Assurez-vous d'importer le Layout
 
 function HomePage() {
-  return React.createElement(
-    'div',
-    { className: 'container mt-5' },
-    React.createElement(
-      'h1',
-      null,
-      'Welcome to MyApp'
-    ),
-    React.createElement(
-      'p',
-      null,
-      'This is the homepage of MyApp. Use the navigation above to sign up or sign in.'
-    )
+  return (
+    <Layout>
+      <div className="container mt-5">
+        <h1>Welcome to MyApp</h1>
+        <p>This is the homepage of MyApp. Use the navigation above to sign up or sign in.</p>
+      </div>
+    </Layout>
   );
 }
 

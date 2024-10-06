@@ -1,23 +1,20 @@
-// src/App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import SignInPage from './pages/SignInPage';
-import SignUpSimple from './components/login/SignUpSimple';
+import SignUpPage from './pages/SignUpPage';
+import ProfilePage from './pages/users/ProfilePage'; // Importez votre composant ProfilePage
 
 function App() {
-  return React.createElement(
-    'div',
-    null,
-    React.createElement(NavBar),
-    React.createElement(
-      Routes,
-      null,
-      React.createElement(Route, { path: '/', element: React.createElement(HomePage) }),
-      React.createElement(Route, { path: '/signup', element: React.createElement(SignUpSimple) }),
-      React.createElement(Route, { path: '/sign-in', element: React.createElement(SignInPage) })
-    )
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/profile" element={<ProfilePage />} /> {/* Ajoutez la route pour le profil */}
+      </Routes>
+    </div>
   );
 }
 

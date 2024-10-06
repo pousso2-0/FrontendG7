@@ -1,17 +1,48 @@
-// src/services/authService.js
-import axios from 'axios';
+import { BaseService } from './baseService';
 
-const API_URL = 'http://localhost:5000/api'; // Ajustez l'URL selon votre configuration
+class AuthService extends BaseService {
+  constructor() {
+    super('/users');
+  }
 
-const authService = {
-  register: async (userData) => {
+  register = async (userData) => {
     try {
-      const response = await axios.post(`${API_URL}/users/register`, userData);
+      const response = await this.post('/register', userData);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
       return response.data;
     } catch (error) {
-      throw error.response.data;
+      throw error.response ? error.response.data : error.message;
     }
-  },
-};
+  };
 
+  login = async (credentials) => {
+    try {
+      const response = await this.post('/login', credentials);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
+      return response.data;
+    } catch (error) {
+      throw error.response ? error.response.data : error.message;
+    }
+  };
+
+  logout = () => {
+    localStorage.removeItem('token');
+  };
+
+  getCurrentUser = () => this.get('/profile');
+
+  isAuthenticated = () => {
+    return !!localStorage.getItem('token');
+  };
+
+  getToken = () => {
+    return localStorage.getItem('token');
+  };
+}
+
+const authService = new AuthService();
 export default authService;
