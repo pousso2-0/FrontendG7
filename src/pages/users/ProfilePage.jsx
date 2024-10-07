@@ -25,7 +25,7 @@ const ProfilePage = () => {
     return <div>Loading...</div>;
   }
 
-  console.log('Données utilisateur transmises au composant UserProfile :', userProfile); // Vérifiez ce qui est passé au composant UserProfile
+  console.log('Données utilisateur transmises au composant UserProfile :', userProfile); 
 
   return (
     <Layout>

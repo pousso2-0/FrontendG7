@@ -22,8 +22,3 @@ api.interceptors.request.use(
 
 export default api;
 
-
-// import { userService } from './services/userService';
-// import { postService } from './services/postService';
-// import { authService } from './services/authService';
-// import { articleService } from './services/articleService';
