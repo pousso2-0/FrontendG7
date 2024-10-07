@@ -1,15 +1,15 @@
-import axios from 'axios';
+import { AxiosHttpClient } from './axiosHttpClient';
+import { FetchHttpClient } from './fetchHttpClient';
 
-const API_URL = 'http://localhost:5000/api'; 
+const API_URL = 'http://localhost:5000/api';
 
-const api = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+// Choisissez le client HTTP que vous voulez utiliser
+export const api = new AxiosHttpClient(API_URL);
+// ou
+// export const api = new FetchHttpClient(API_URL);
 
-api.interceptors.request.use(
+// Ajoutez l'intercepteur pour le token d'authentification
+api.instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -19,6 +19,3 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
-
-export default api;
-
