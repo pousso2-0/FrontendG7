@@ -5,20 +5,33 @@ class PostService extends BaseService {
     super('/posts');
   }
 
-  getAllPosts = (page, limit) => this.get('', { params: { page, limit } });
-  getPost = (id) => this.get(`/${id}`);
-  createPost = (postData) => this.post('', postData);
-  updatePost = (id, postData) => this.put(`/${id}`, postData);
-  deletePost = (id) => this.delete(`/${id}`);
+  createPost = (postData) => this.post('/', postData);
+  
+  getPostById = (postId) => this.get(`/${postId}`);
+  
+  updatePost = (postId, postData) => this.put(`/${postId}`, postData);
+  
+  deletePost = (postId) => this.delete(`/${postId}`);
+  
   getUserPosts = (userId, page, limit) => this.get(`/user/${userId}`, { params: { page, limit } });
-  incrementShareCount = (id) => this.post(`/${id}/share`);
-  retweetPost = (postId, content) => this.post('/retweet', { postId, content });
-  addToFavorites = (postId) => this.post('/favorites', { postId });
-  getUserRetweets = () => this.get('/retweets');
+  
+  getAllPosts = (page, limit) => this.get('/', { params: { page, limit } });
+  
+  incrementShareCount = (postId) => this.post(`/${postId}/share`);
+  
+  retweetPost = (retweetData) => this.post('/retweet', retweetData);
+  
+  addToFavorites = (favoriteData) => this.post('/favorites', favoriteData);
+  
+  getUserRetweet = () => this.get('/retweets');
+  
   getUserFavorites = () => this.get('/favorites/f');
+  
   deleteFromFavorites = (postId) => this.delete(`/favorites/${postId}`);
-  sharePost = (postId, recipients) => this.post('/share', { postId, recipients });
-  recordView = (postId) => this.post('/view', { postId });
+  
+  sharePost = (shareData) => this.post('/share', shareData);
+  
+  viewPost = (postId) => this.post('/view', { postId });
 }
 
 export const postService = new PostService();

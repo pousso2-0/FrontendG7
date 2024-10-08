@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HttpClient } from './httpClient.js';  // Assurez-vous que le chemin est correct
+import { HttpClient } from '../httpClient.js';  // Assurez-vous que le chemin est correct
 
 export class AxiosHttpClient extends HttpClient {
   constructor(baseURL, defaultConfig = {}) {

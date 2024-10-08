@@ -1,9 +1,8 @@
 import { BaseService } from './baseService';
-import { api } from './api';
 
 class UserService extends BaseService {
   constructor() {
-    super('/users', api);
+    super('/users');
   }
 
   getCurrentUser = () => this.get('/profile');
